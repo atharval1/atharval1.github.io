@@ -799,6 +799,7 @@ a:hover {
   border-radius: 1rem;
   margin-bottom: 3rem;
   text-align: center;
+  word-wrap: break-word;
 }
 
 .service-box:hover .ico-circle {
