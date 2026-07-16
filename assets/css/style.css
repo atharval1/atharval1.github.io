@@ -997,10 +997,15 @@ a:hover {
 
 .about-mf .about-img {
     margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
 }
 
 .about-mf .about-img img {
-    margin-left: 10px;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 320px;
+    border-radius: 1.5rem;
 }
 
 @media (min-width: 767px) {
@@ -1149,8 +1154,8 @@ a:hover {
     gap: 1rem;
     align-items: flex-start;
     padding: 1rem 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(109, 213, 237, 0.08);
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(58, 176, 255, 0.06);
     border-radius: 0.9rem;
 }
 
@@ -1199,10 +1204,11 @@ a:hover {
 
 /* Profile photo polish */
 .profile-photo {
-    width: 220px;
-    height: 220px;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
     object-fit: cover;
-    border-radius: 18px;
+    border-radius: 1.5rem;
     border: 1px solid rgba(255,255,255,0.06);
     box-shadow: 0 20px 40px rgba(2,6,23,0.45);
 }
@@ -1210,12 +1216,10 @@ a:hover {
 /* Make About and Contact cards share the same themed visual */
 .box-shadow-full1,
 .contact-card {
-    background: rgba(5, 10, 24, 0.92);
-    border: none;
+    background: rgba(12, 22, 48, 0.96);
+    border: 1px solid rgba(109, 213, 237, 0.15);
     border-radius: 1.25rem;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.24);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.18);
 }
 
 .contact-note {
