@@ -177,5 +177,84 @@
       preloader.remove()
     });
   }
+  /**
+   * Scroll Animation Trigger
+   * Adds animation classes when elements enter viewport
+   */
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
 
+  const animationObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Trigger animations for different element types
+        if (entry.target.classList.contains('timeline-item')) {
+          entry.target.style.animation = 'fadeInLeft 0.6s ease-out forwards';
+        }
+        if (entry.target.classList.contains('project-card')) {
+          entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+        }
+        if (entry.target.classList.contains('highlight-item')) {
+          entry.target.style.animation = 'fadeInLeft 0.5s ease-out forwards';
+        }
+        if (entry.target.classList.contains('social-card')) {
+          entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+        }
+        // Don't reobserve this element
+        animationObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all animated elements
+  const animatedElements = [
+    ...select('.timeline-item', true),
+    ...select('.project-card', true),
+    ...select('.highlight-item', true),
+    ...select('.social-card', true)
+  ];
+
+  animatedElements.forEach(el => {
+    animationObserver.observe(el);
+  });
+
+  /**
+   * Parallax effect on hero section
+   */
+  const heroSection = select('.hero-visual');
+  if (heroSection) {
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.scrollY;
+      heroSection.style.backgroundPosition = `center ${scrollPosition * 0.5}px`;
+    });
+  }
+
+  /**
+   * Enhanced button hover ripple effect
+   */
+  const buttons = select('.button', true);
+  if (buttons) {
+    buttons.forEach(button => {
+      button.addEventListener('click', function (e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+
+        // Remove existing ripples
+        const ripples = this.querySelectorAll('.ripple');
+        ripples.forEach(r => r.remove());
+
+        this.appendChild(ripple);
+      });
+    });
+  }
 })()
