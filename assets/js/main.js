@@ -178,6 +178,28 @@
     });
   }
   /**
+   * 3D tilt effect on cards and info blocks
+   */
+  const tiltCards = [...document.querySelectorAll('.tilt-card')];
+  if (tiltCards.length) {
+    tiltCards.forEach(card => {
+      card.addEventListener('pointermove', (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const rotateY = ((x / rect.width) - 0.5) * 12;
+        const rotateX = (0.5 - (y / rect.height)) * 12;
+
+        card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+      });
+
+      card.addEventListener('pointerleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+
+  /**
    * Scroll Animation Trigger
    * Adds animation classes when elements enter viewport
    */

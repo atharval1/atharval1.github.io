@@ -124,8 +124,43 @@ a:hover {
     color: #e0e8ff;
 }
 
+.hero-visual::after {
+    content: "";
+    position: absolute;
+    width: 32rem;
+    height: 32rem;
+    right: -8rem;
+    top: -8rem;
+    background: radial-gradient(circle, rgba(110, 231, 255, 0.28) 0%, rgba(110, 231, 255, 0.12) 30%, transparent 68%);
+    border-radius: 50%;
+    filter: blur(8px);
+    pointer-events: none;
+    animation: floatOrb 14s ease-in-out infinite alternate;
+}
+
 .hero-buttons .button {
     min-width: 170px;
+}
+
+.tilt-card {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    will-change: transform;
+}
+
+.tilt-card::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02));
+    transform: translateZ(24px);
+    pointer-events: none;
+}
+
+.tilt-card:hover {
+    box-shadow: 0 24px 55px rgba(59, 130, 246, 0.18);
 }
 
 .skill-list {
@@ -429,15 +464,31 @@ a:hover {
 }
 
 @media (max-width: 767px) {
+    .hero {
+        min-height: 100svh;
+    }
+    .hero .hero-content {
+        width: 100%;
+        padding: 0 1rem;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
     .hero-title {
-        font-size: 2.4rem;
+        font-size: 2.2rem;
+        line-height: 1.2;
     }
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     .hero-buttons {
         display: grid;
         gap: 0.75rem;
+        justify-items: center;
+    }
+    .hero-buttons .button {
+        width: min(100%, 260px);
     }
     .about-info {
         grid-template-columns: 1fr;
@@ -487,6 +538,27 @@ a:hover {
     }
     .title-left {
         text-align: center;
+    }
+    .box-shadow-full1 {
+        padding: 2rem 1rem;
+    }
+    .profile-photo {
+        max-width: 240px;
+    }
+    .timeline-item {
+        padding: 1.25rem 1rem;
+    }
+    .timeline-item p,
+    .timeline-item li {
+        font-size: 0.92rem;
+    }
+    .project-card {
+        padding: 1.2rem 1rem;
+    }
+    .social-icon ul li a {
+        width: 38px;
+        height: 38px;
+        line-height: 38px;
     }
 }
 
@@ -1652,6 +1724,17 @@ footer .copyright {
     }
     100% {
         background-position: 1000px 0;
+    }
+}
+
+@keyframes floatOrb {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate3d(-2rem, 2.5rem, 0) scale(1.1);
+        opacity: 1;
     }
 }
 
